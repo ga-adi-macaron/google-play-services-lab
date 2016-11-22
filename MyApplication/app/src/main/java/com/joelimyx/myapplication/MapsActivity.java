@@ -31,6 +31,7 @@ public class MapsActivity extends FragmentActivity
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
     private Double mLatitude, mLongitude;
+    private Location mLocation;
 
 
     @Override
@@ -58,49 +59,27 @@ public class MapsActivity extends FragmentActivity
         mapFragment.getMapAsync(this);
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Log.d(TAG, "onMapReady: map");
         mMap = googleMap;
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
                 shouldShowRequestPermissionRationale("Need location");
-
             }else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         1);
             }
         }
-        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if (location!=null){
-            Log.d(TAG, "onConnected: location");
-            mLatitude = location.getLatitude();
-            mLongitude = location.getLongitude();
-
-            // Add a marker in Sydney and move the camera
-            LatLng lastLocation = new LatLng(mLatitude, mLongitude);
-            mMap.addMarker(new MarkerOptions().position(lastLocation).title("You are here"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(lastLocation));
-            mMap.setMinZoomPreference(15.0f);
-        }
+        mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        updateMap();
     }
 
     @Override
@@ -122,9 +101,31 @@ public class MapsActivity extends FragmentActivity
                 if (!(grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                    mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+                    updateMap();
                 }
                 break;
             }
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    private void updateMap(){
+        if (mLocation!=null){
+            mLatitude = mLocation.getLatitude();
+            mLongitude = mLocation.getLongitude();
+
+            LatLng lastLocation = new LatLng(mLatitude, mLongitude);
+            mMap.addMarker(new MarkerOptions().position(lastLocation).title("You are here"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(lastLocation));
+            mMap.setMinZoomPreference(15.0f);
         }
     }
 }
