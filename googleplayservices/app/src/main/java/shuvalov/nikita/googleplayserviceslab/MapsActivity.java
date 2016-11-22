@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -40,9 +41,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         Intent intent = getIntent();
-
         LatLng currentLocal = new LatLng(intent.getDoubleExtra("LAT",37.23500), intent.getDoubleExtra("LONG", -115.81111));
         mMap.addMarker(new MarkerOptions().position(currentLocal).title("You are here"));
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocal));
+//        mMap.moveCamera(CameraUpdateFactory.zoomBy(15));
     }
 }
