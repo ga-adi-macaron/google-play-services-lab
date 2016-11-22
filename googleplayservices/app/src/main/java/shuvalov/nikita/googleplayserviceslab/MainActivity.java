@@ -2,6 +2,7 @@ package shuvalov.nikita.googleplayserviceslab;
 
 import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -12,6 +13,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION=42;
     private double mLatitude = 0.00;
     private double mLongitude = 0.00;
+    private Button mMapsButton;
 
 
 
@@ -40,6 +44,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     .build();
         }
         mGoogleApiClient.connect();
+
+        mMapsButton = (Button)findViewById(R.id.goto_map);
+        mMapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MapsActivity.class);
+                intent.putExtra("LAT", mLatitude);
+                intent.putExtra("LONG", mLongitude);
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override
