@@ -26,7 +26,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -44,7 +43,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng currentLocal = new LatLng(intent.getDoubleExtra("LAT",37.23500), intent.getDoubleExtra("LONG", -115.81111));
         mMap.addMarker(new MarkerOptions().position(currentLocal).title("You are here"));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocal));
-//        mMap.moveCamera(CameraUpdateFactory.zoomBy(15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocal,15));
     }
 }
