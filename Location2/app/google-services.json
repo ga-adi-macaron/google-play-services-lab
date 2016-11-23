@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "591193831894",
+    "project_id": "firebase-location2"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591193831894:android:c9bb895f31edd39b",
+        "android_client_info": {
+          "package_name": "com.elysium.location2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "591193831894-0jtf19qdv8inh5baglpnnjo5crkcdn8i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elysium.location2",
+            "certificate_hash": "41215D80EE70A208369E065EEA9AD205ADD66364"
+          }
+        },
+        {
+          "client_id": "591193831894-lh3e3ev2e19gj7ks9s70i0vad7e6s0fq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKEA352FJmKjmGzX5YZAEpsI-VP2FgUiY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
