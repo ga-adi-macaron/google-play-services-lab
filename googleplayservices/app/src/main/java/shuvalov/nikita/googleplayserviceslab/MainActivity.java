@@ -22,12 +22,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+    private static final String TAG="MainActivity";
     GoogleApiClient mGoogleApiClient;
-    private Location mLastLocation;
+    Location mLastLocation;
     private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION=42;
-    private double mLatitude = 0.00;
-    private double mLongitude = 0.00;
-    private Button mMapsButton;
+    private double mLatitude;
+    private double mLongitude;
+    Button mMapsButton;
 
 
 
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 intent.putExtra("LAT", mLatitude);
                 intent.putExtra("LONG", mLongitude);
                 startActivity(intent);
-
             }
         });
     }
@@ -71,40 +71,30 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             }
             Log.d("LONGITUDE", "onConnected: "+ mLongitude);
             Log.d("LATITUDE", "onConnected: " + mLatitude);
+            mGoogleApiClient.disconnect();
         }else{
             //Ask for permission
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.READ_CONTACTS)) {
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-                alertBuilder.setMessage("Location tracking is being requested so that I can sell your information to companies")
-                        .setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        })
-                        .create();
-
-
+                Toast.makeText(this, "Permission required to display location", Toast.LENGTH_LONG).show();
             } else {
 
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_ACCESS_FINE_LOCATION);
-
             }
 
         }
 
     }
-
     @Override
     public void onConnectionSuspended(int i) {
+        Log.d(TAG, "onConnectionSuspended: ");
 
     }
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        Log.d(TAG, "onConnectionFailed: "+connectionResult.getErrorMessage());
     }
+
 }
