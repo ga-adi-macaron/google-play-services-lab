@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "558969878140",
+    "project_id": "mapapp-5833b"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558969878140:android:a09108ec2fbaf320",
+        "android_client_info": {
+          "package_name": "com.colinbradley.gpslab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558969878140-2471l6riao4f05hjsdd6ssv17h6ba487.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.colinbradley.gpslab",
+            "certificate_hash": "792CA8E542FB7BE650B9257EDB4C68C6E051CC05"
+          }
+        },
+        {
+          "client_id": "558969878140-rblso7tn1rm19n1es2jm0j9l35cgtkep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5mA5NF24JvAp2Q6_UKZlyfm53RqRlXws"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
