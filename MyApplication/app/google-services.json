@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1083191285230",
+    "project_id": "firebase-playdemo"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083191285230:android:68b9ea98e21a7660",
+        "android_client_info": {
+          "package_name": "com.jonathanlieblich.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083191285230-cgisunlr957iot9mpbqes24vv5kdfam9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jonathanlieblich.myapplication",
+            "certificate_hash": "4A01877FDC7B1A6DAD3A8F7B66E4C92FAD46547B"
+          }
+        },
+        {
+          "client_id": "1083191285230-c12qfovagqi53cuis9909k9l1srg84g4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOJIWvB-116LoOQfiOkDedGGrQM25lpgU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
